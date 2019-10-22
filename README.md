@@ -13,11 +13,6 @@ COM16 USB\VID_239A&PID_800B&MI_00\6&283305BE&0&0000
 ## Info
 Instead of this executable one could also go for a simple call to the wmic.exe & filter the content afterwards.
 
-This call:
-``` 
-
-outputs:
-
 ```
 cmd> wmic path Win32_PnPEntity where "Name like '%(COM%'" get Name,DeviceID
 
