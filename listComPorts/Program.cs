@@ -5,8 +5,10 @@ using System.Text.RegularExpressions;
 namespace listComPorts {
     class Program {
         static void Main(string[] args) {
-            var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_PnPEntity");
-            Regex comRegex = new Regex(@"COM[0-9]+");
+            var query = @"SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'";
+            
+            var searcher = new ManagementObjectSearcher("root\\CIMV2", query);
+            Regex comRegex = new Regex(@"COM[0-9]+");            
 
             foreach(var obj in searcher.Get()) {
                 var name = (string)obj["Name"];
@@ -14,9 +16,9 @@ namespace listComPorts {
 
                 var match = comRegex.Match(name);
                 if(match.Success) {
-                    Console.WriteLine(match.Value + " " + (string)obj["DeviceID"]);
+                    Console.WriteLine(match.Value + " - " + (string)obj["DeviceID"]);
                 }   
-            }     
+            }
         }
     }
 }
