@@ -6,8 +6,17 @@ Roughly replicates behavior of https://github.com/todbot/usbSearch/blob/master/l
 
 ## Usage
 ```
-cmd> .\listComPorts.exe
+cmd> .\listComPorts
 COM16 USB\VID_239A&PID_800B&MI_00\6&283305BE&0&0000
+
+// Search by VendorID
+cmd> .\listComPorts -s VID_239A
+
+// Search by ProductID
+cmd> .\listComPorts -s PID_800B
+
+// Search by anything
+cmd> .\listComPorts -s VID_239A&PID_800
 ```
 
 ## Info
