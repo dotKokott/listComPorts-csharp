@@ -7,10 +7,10 @@ namespace listComPorts {
         static void Main(string[] args) {
             var query = @"SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'";
             
-            var searcher = new ManagementObjectSearcher("root\\CIMV2", query);
-            Regex comRegex = new Regex(@"COM[0-9]+");            
+            var comRegex = new Regex(@"COM[0-9]+");
 
-            foreach(var obj in searcher.Get()) {
+            var searcher = new ManagementObjectSearcher("root\\CIMV2", query);
+            foreach (var obj in searcher.Get()) {
                 var name = (string)obj["Name"];
                 if (name == null) continue;
 
